@@ -1,8 +1,8 @@
 %% Reshape
-eeg_2d=reshape(epo_all.x,32832, 1144);
+eeg_3d=reshape(epo_all.x,32832, 1144);
 
 %%
-XTrain=eeg_2d;
+XTrain=eeg_3d;
 YTrain=categorical(y);
 
 %%
@@ -45,8 +45,8 @@ for i=1:kfold
   % Call index of training & testing sets
   trainIdx=fold.training(i); testIdx=fold.test(i);
   % Call training & testing features and ys
-  XTrain=eeg_2d(:,trainIdx); YTrain=y(trainIdx);
-  XTest=eeg_2d(:,testIdx); YTest=y(testIdx);
+  XTrain=eeg_3d(:,trainIdx); YTrain=y(trainIdx);
+  XTest=eeg_3d(:,testIdx); YTest=y(testIdx);
   % Convert y of both training and testing into categorial format
   YTrain=categorical(YTrain); YTest=categorical(YTest);
 %   YTrain=YTrain'; YTest=YTest';
